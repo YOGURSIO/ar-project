@@ -30,8 +30,6 @@ window.addEventListener("load", () => {
     const timerDisplay = document.getElementById("timer");
     const progressBar = document.getElementById("progress-bar");
 
-    markers.forEach((m, i) => (m.element.object3D.visible = i === 0));
-
     const showMessage = (msg) => {
         overlay.textContent = msg;
         overlay.style.opacity = "1";
@@ -59,19 +57,16 @@ window.addEventListener("load", () => {
         timerInterval = null;
     }
 
-    showMessage(
-        ""
-        + markers[0].clue);
+    showMessage(markers[0].clue);
 
     markers.forEach((marker, index) => {
         const box = marker.element.querySelector("a-box");
 
-        // Cuando el marcador se detecta
         marker.element.addEventListener("markerFound", () => {
             console.log("Detectado:", marker.id);
             if (index === currentIndex) {
                 nextMarker();
-                marker_sound.currentTime = 0; // reinicia el audio
+                marker_sound.currentTime = 0;
                 marker_sound.play().catch((err) => console.warn("No se pudo reproducir el sonido:", err));
                 
                 if (index === 0 && !timerInterval) startTimer();
@@ -89,12 +84,12 @@ window.addEventListener("load", () => {
             markers[currentIndex].element.object3D.visible = true;
             showMessage("🔍 " + markers[currentIndex].clue);
         } else {
-            success_sound.currentTime = 0; // reinicia el audio
+            success_sound.currentTime = 0; 
             success_sound.play().catch((err) => console.warn("No se pudo reproducir el sonido:", err));
             stopTimer();
             showMessage("¡Felicidades! Has completado el recorrido.");
         }
     }
-    alert("¡Bienvenido al Paseo por la UCU! Recuerda usar las escaleras si puedes, ¡Es lo más sano! \n Una vez encuentres el primer marcador el timer empezara a contar, ¡por lo que debes estar listo!")
+    alert("¡Bienvenido al Paseo por la UCU! Recuerda usar las escaleras si puedes, ¡Es lo más sano! \nDebes buscar 3 monedas, una vez encuentres la primera el timer empezara a contar, ¡por lo que debes estar listo!")
 });
 
