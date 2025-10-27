@@ -16,9 +16,9 @@ window.addEventListener("load", () => {
             clue: "Casi terminas... busca el primero de todos y autor de todo esto.",
         },
     ];
-    const marker_sound = new Audio("/assets/sounds/marker-found.mp3");
+    const marker_sound = new Audio("/ar-project/assets/sounds/marker-found.mp3");
     marker_sound.volume = 1;
-    const success_sound = new Audio("/assets/sounds/success.mp3");
+    const success_sound = new Audio("/ar-project/assets/sounds/success.mp3");
     success_sound.volume = 1;
 
     let currentIndex = 0;
